@@ -2,6 +2,21 @@
 
 arrow-sql-yarn可以让[datafusion](https://datafusion.apache.org/user-guide/sql/index.html)和[polars](https://pola.rs/)在yarn master上运行sql
 
+## 引擎选择
+
+使用use选择引擎,语法如下,默认为datafusion(可省略)
+
+```sql
+use datafusion;
+CREATE EXTERNAL TABLE example STORED AS PARQUET LOCATION '/oss/ads2/test1/';
+select count(*) FROM example limit 3
+```
+
+```sql
+use polars;
+select count(*) FROM read_parquet('/oss/ads2/test1/*.parquet')  limit 3
+```
+
 ## 提交方式
 
 ### shell
@@ -59,22 +74,6 @@ try {
 ## 运行示例
 
 ![image](./image.jpeg)
-
-
-## 引擎选择
-
- 使用use选择引擎,语法如下,默认为datafusion(可省略)
-
-```sql
-use datafusion;
-CREATE EXTERNAL TABLE example STORED AS PARQUET LOCATION '/oss/ads2/test1/';
-select count(*) FROM example limit 3
-```
-
-```sql
-use polars;
-select count(*) FROM read_parquet('/oss/ads2/test1/*.parquet')  limit 3
-```
 
 ## sql 语法参考
 * [datafusion](https://datafusion.apache.org/user-guide/sql/index.html)
