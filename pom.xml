@@ -28,9 +28,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <hadoop.version>3.2.1</hadoop.version>
         <lombok.version>1.18.20</lombok.version>
-        <fastjson.version>1.2.76</fastjson.version>
-        <lang3.version>3.11</lang3.version>
-        <hutool.version>5.7.2</hutool.version>
+        <hutool.version>5.8.32</hutool.version>
     </properties>
 
     <distributionManagement>
@@ -56,7 +54,13 @@
 
             <dependency>
                 <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
+                <artifactId>hutool-core</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-json</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
 
