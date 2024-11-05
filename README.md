@@ -59,3 +59,20 @@ try {
 ## 运行示例
 
 ![image](./image.jpeg)
+
+
+## 引擎选择
+
+ 使用use选择引擎,语法如下,默认为datafusion(可省略)
+
+```sql
+use datafusion;
+CREATE EXTERNAL TABLE example STORED AS PARQUET LOCATION '/oss/ads2/test1/';
+select count(*) FROM example limit 3
+```
+
+```sql
+use polars;
+select count(*) FROM read_parquet('/oss/ads2/test1/*.parquet')  limit 3
+```
+
