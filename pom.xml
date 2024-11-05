@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.on.yarn</groupId>
+    <artifactId>arrow-sql-yarn</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>arrow-sql</name>
+
+    <modules>
+        <module>arrow-common</module>
+        <module>arrow-client</module>
+        <module>datafusion-jni</module>
+        <module>polars-jni</module>
+        <module>arrow-app-master</module>
+    </modules>
+
+    <properties>
+        <encoding>UTF-8</encoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <java.version>1.8</java.version>
+        <source.version>1.8</source.version>
+        <target.version>1.8</target.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <hadoop.version>3.2.1</hadoop.version>
+        <lombok.version>1.18.20</lombok.version>
+        <fastjson.version>1.2.76</fastjson.version>
+        <lang3.version>3.11</lang3.version>
+        <hutool.version>5.7.2</hutool.version>
+    </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-release</id>
+            <name>project release repository</name>
+            <url>https://maven.dev.longbridge-inc.com/nexus/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>project snapshots repository</name>
+            <url>https://maven.dev.longbridge-inc.com/nexus/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.hadoop</groupId>
+                <artifactId>hadoop-client</artifactId>
+                <version>${hadoop.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
