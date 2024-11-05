@@ -76,3 +76,6 @@ use polars;
 select count(*) FROM read_parquet('/oss/ads2/test1/*.parquet')  limit 3
 ```
 
+## sql 语法参考
+* [datafusion](https://datafusion.apache.org/user-guide/sql/index.html)
+* [polars](https://pola.rs/)
