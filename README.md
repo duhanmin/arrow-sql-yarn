@@ -1,6 +1,6 @@
 # arrow-sql-yarn
 
-arrow-sql-yarn可以让[datafusion](https://datafusion.apache.org/user-guide/sql/index.html)和[polars](https://pola.rs/)在yarn master上运行
+arrow-sql-yarn可以让[datafusion](https://datafusion.apache.org/user-guide/sql/index.html)和[polars](https://pola.rs/)在yarn master上运行sql
 
 ## 提交方式
 
