@@ -1,6 +1,6 @@
 # arrow-sql-yarn
 
-arrow-sql-yarn可以让df和pr在yarn master上运行
+arrow-sql-yarn可以让datafusion和polars在yarn master上运行
 
 ## 提交方式
 
