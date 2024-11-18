@@ -26,13 +26,7 @@
 
         <dependency>
             <groupId>cn.hutool</groupId>
-            <artifactId>hutool-core</artifactId>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-json</artifactId>
+            <artifactId>hutool-all</artifactId>
             <scope>compile</scope>
         </dependency>
 

@@ -14,6 +14,7 @@
         <module>arrow-client</module>
         <module>datafusion-jni</module>
         <module>polars-jni</module>
+        <module>linkis-result</module>
         <module>arrow-app-master</module>
     </modules>
 
@@ -54,13 +55,7 @@
 
             <dependency>
                 <groupId>cn.hutool</groupId>
-                <artifactId>hutool-core</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-json</artifactId>
+                <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
 

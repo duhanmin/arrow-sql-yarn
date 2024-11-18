@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 final class DatafusionJni {
 
-    private static final Log log = LogFactory.getLog(DatafusionExecutor.class);
+    private static final Log log = LogFactory.getLog(DatafusionJni.class);
 
     static {
         log.info("load datafusion jni");
@@ -18,8 +18,9 @@ final class DatafusionJni {
 
     public static void main(String[] args) {
         LinkedList<String> linkedHashMap = new LinkedList();
-        linkedHashMap.add("CREATE EXTERNAL TABLE example STORED AS PARQUET LOCATION '/Users/duhanmin/Desktop/2/'");
+        linkedHashMap.add("CREATE EXTERNAL TABLE example STORED AS PARQUET LOCATION '/Users/duhanmin/Desktop/2/3/'");
         linkedHashMap.add("SELECT count(*) FROM example");
+        linkedHashMap.add("SELECT * FROM example limit 1");
         DatafusionJni datafusionJni = new DatafusionJni();
         String sql = datafusionJni.sql(linkedHashMap);
         System.out.println(sql);
