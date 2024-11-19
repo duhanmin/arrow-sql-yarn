@@ -1,12 +1,16 @@
 package com.on.yarn.admin;
 
 import cn.hutool.core.text.StrPool;
+import cn.hutool.core.util.StrUtil;
+import com.on.yarn.LinkisResult$;
 import com.on.yarn.constant.Constants;
 import com.on.yarn.datafusion.DatafusionExecutor;
 import com.on.yarn.arrow.Executor;
 import com.on.yarn.polars.PolarsExecutor;
 
 import java.util.Locale;
+
+import static com.on.yarn.constant.Constants.STORE_PATH;
 
 public class RoutSQL {
     public static Executor getExecutor() {
@@ -21,6 +25,13 @@ public class RoutSQL {
             throw new RuntimeException("不支持的SQL类型: " + type);
         } else {
             return new DatafusionExecutor(job);
+        }
+    }
+
+    public static void result(String result) {
+        String storePath = System.getProperty(STORE_PATH);
+        if (StrUtil.isNotBlank(storePath)){
+            LinkisResult$.MODULE$.show(result, storePath);
         }
     }
 }

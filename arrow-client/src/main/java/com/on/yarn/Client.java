@@ -104,6 +104,8 @@ public class Client {
     private String log4jPropFile = "";
     //The submitter saves the running status
     private String checkpoint = "";
+    //linkis data result
+    private String storePath = "";
     // Start time for client
     private final long clientStartTime = System.currentTimeMillis();
     // Timeout threshold for client. Kill app after time interval expires.
@@ -122,7 +124,6 @@ public class Client {
     private String jobSql = "";
     private String user;
     private static YarnManipulator yarnManipulator;
-    private List<String> parameter = CollUtil.newArrayList();
     /**
      * @param args Command line arguments
      */
@@ -198,6 +199,7 @@ public class Client {
         opts.addOption("container_vcores", true, "Amount of virtual cores to be requested to run the shell command");
         opts.addOption("num_containers", true, "No. of containers on which the shell command needs to be executed");
         opts.addOption("log_properties", true, "log4j.properties file");
+        opts.addOption("store_path", true, "linkis data result");
         opts.addOption("keep_containers_across_application_attempts", false,
                 "Flag to indicate whether to keep containers across application attempts."
                         + " If the flag is true, running containers will not be killed when"
@@ -335,20 +337,9 @@ public class Client {
 
         clientTimeout = Integer.parseInt(cliParser.getOptionValue("timeout", "-1"));
         log4jPropFile = cliParser.getOptionValue("log_properties", "");
-
-        if (cliParser.hasOption("p")) {
-            String p = cliParser.getOptionValue("p");
-            if (StrUtil.isNotBlank(p)){
-                for (String str : StrUtil.split(p, ",")) {
-                    if(StrUtil.isNotBlank(str)){
-                        parameter.add(str);
-                    }
-                }
-            }
-        }
-
         log4jPropFile = cliParser.getOptionValue("log_properties", "");
         checkpoint = cliParser.getOptionValue("checkpoint", "");
+        storePath = cliParser.getOptionValue("store_path", "");
 
         return true;
     }
@@ -540,12 +531,7 @@ public class Client {
         vargs.add("-Duser.language=zh");
         vargs.add("-Dfile.encoding=utf-8");
         vargs.add("-D"+ Constants.JOB_SQL + "=" + Base64.encode(jobSql));
-
-        if (CollUtil.isNotEmpty(parameter)){
-            for (String p : parameter) {
-                vargs.add("-D" + p);
-            }
-        }
+        vargs.add("-D"+ Constants.STORE_PATH + "=" + storePath);
 
         // Set class name
         vargs.add(appMasterMainClass);

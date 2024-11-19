@@ -28,9 +28,9 @@
 
         <dependency>
             <groupId>com.on.yarn</groupId>
-            <artifactId>arrow-client</artifactId>
+            <artifactId>linkis-result</artifactId>
             <version>${project.parent.version}</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

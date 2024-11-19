@@ -36,6 +36,7 @@ public class Constants {
 
     public static final String JOB_SQL = "job.sql";
 
+    public static final String STORE_PATH = "STORE_PATH";
 
     public static boolean exec(String command) {
         boolean result;

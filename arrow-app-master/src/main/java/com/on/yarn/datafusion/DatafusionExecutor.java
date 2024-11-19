@@ -1,7 +1,6 @@
 package com.on.yarn.datafusion;
 
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
+import com.on.yarn.admin.RoutSQL;
 import com.on.yarn.arrow.Executor;
 
 public class DatafusionExecutor implements Executor {
@@ -9,12 +8,14 @@ public class DatafusionExecutor implements Executor {
 
     public DatafusionExecutor(String job) {
         this.job = job;
+
     }
 
     @Override
-    public JSONObject run() throws Throwable {
-        String sql = DatafusionJni.sql(init(job));
-        return JSONUtil.parseObj(sql);
+    public void run() throws Throwable {
+        String result = DatafusionJni.sql(init(job));
+        logInfo.append("\nresults: \n").append(result);
+        RoutSQL.result(result);
     }
 
 }
