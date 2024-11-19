@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.text.StrPool;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
 
 import java.util.LinkedList;
 
@@ -30,7 +31,7 @@ public interface Executor {
         return logInfo.toString();
     }
 
-    void run() throws Throwable;
+    JSONObject run() throws Throwable;
 
     default LinkedList<String> init(String content) {
         LinkedList<String> sqls = new LinkedList<>();

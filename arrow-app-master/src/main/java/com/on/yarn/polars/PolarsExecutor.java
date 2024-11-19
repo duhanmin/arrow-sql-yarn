@@ -1,5 +1,7 @@
 package com.on.yarn.polars;
 
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.on.yarn.arrow.Executor;
 
 public class PolarsExecutor implements Executor {
@@ -11,8 +13,8 @@ public class PolarsExecutor implements Executor {
     }
 
     @Override
-    public void run() throws Throwable {
+    public JSONObject run() throws Throwable {
         String sql = PolarsJni.sql(init(job));
-        logInfo.append("\nresults: \n").append(sql);
+        return JSONUtil.parseObj(sql);
     }
 }

@@ -1,5 +1,7 @@
 package com.on.yarn.datafusion;
 
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.on.yarn.arrow.Executor;
 
 public class DatafusionExecutor implements Executor {
@@ -10,9 +12,9 @@ public class DatafusionExecutor implements Executor {
     }
 
     @Override
-    public void run() throws Throwable {
+    public JSONObject run() throws Throwable {
         String sql = DatafusionJni.sql(init(job));
-        logInfo.append("\nresults: \n").append(sql);
+        return JSONUtil.parseObj(sql);
     }
 
 }
