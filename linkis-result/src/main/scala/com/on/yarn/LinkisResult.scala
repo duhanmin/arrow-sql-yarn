@@ -21,7 +21,7 @@ object LinkisResult {
       val alias: String = key
       val data: JSONArray = json.getJSONArray(key)
       if(CollUtil.isEmpty(data)){
-        resultSetWriterNull(alias, storePath, "null")
+        resultSetWriterNull(alias, storePath, "本页无数据,翻到下一页看吧!!!")
       } else {
         val columns = data.getJSONObject(0).keySet().map(c => Column(c, StringType, "")).toArray[Column]
         columns.foreach(c => log.info(s"c is ${c.columnName}, comment is ${c.comment}"))
@@ -50,7 +50,7 @@ object LinkisResult {
     val writer = new StorageResultSetWriter(resultSetPath)
     val metaArrayBuffer = new ArrayBuffer[Tuple2[String, String]]()
     metaArrayBuffer.add(Tuple2("code", StringType.typeName))
-    val columns = metaArrayBuffer.map { c => Column(c._1, DataType.toDataType(c._2), "本页无数据,翻到下一页看吧!!!") }.toArray[Column]
+    val columns = metaArrayBuffer.map { c => Column(c._1, DataType.toDataType(c._2), "") }.toArray[Column]
     writer.addMetaData(columns.map(_.toArray).reduce((a1, a2) => a1 ++ a2))
     val r: Array[Any] = columns.indices.map { i => code }.toArray
     writer.addRecord(r)
