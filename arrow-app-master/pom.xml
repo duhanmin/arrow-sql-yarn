@@ -30,7 +30,6 @@
             <groupId>com.on.yarn</groupId>
             <artifactId>linkis-result</artifactId>
             <version>${project.parent.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
