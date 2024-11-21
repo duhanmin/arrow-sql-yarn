@@ -16,17 +16,14 @@ object LinkisResult {
   def show(jsonStr: String, storePath: String): Unit = {
     val json: JSONObject = JSONUtil.parseObj(jsonStr)
     val startTime = System.currentTimeMillis()
-
+    var alias = 0
     for (key <- json.keySet()) {
-      val alias: String = key
       val data: JSONArray = json.getJSONArray(key)
-      if(CollUtil.isEmpty(data)){
-        resultSetWriterNull(alias, storePath, "本页无数据,翻到下一页看吧!!!")
-      } else {
+      if(CollUtil.isNotEmpty(data)){
         val columns = data.getJSONObject(0).keySet().map(c => Column(c, StringType, "")).toArray[Column]
         columns.foreach(c => log.info(s"c is ${c.columnName}, comment is ${c.comment}"))
         val metaData = columns.map(_.toArray).reduce((a1, a2) => a1 ++ a2)
-        val resultSetPath = getResultSetPath(storePath, alias)
+        val resultSetPath = getResultSetPath(storePath, alias.toString)
         val writer = new StorageResultSetWriter(resultSetPath)
         writer.addMetaData(metaData)
         Utils.tryThrow({
@@ -41,6 +38,7 @@ object LinkisResult {
         log.warn(s"Time taken: ${System.currentTimeMillis() - startTime}, Fetched ${data.size()} row(s).")
         writer.flush()
         writer.close()
+        alias = alias + 1;
       }
     }
   }
